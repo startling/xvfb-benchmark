@@ -1,7 +1,7 @@
 test:
   override:
     # run x11perf
-    - x11perf -all | tee $CIRCLE_ARTIFACTS/with-xvfb.x11perf.txt
+    - x11perf -range dot,seg500 | tee $CIRCLE_ARTIFACTS/with-xvfb.x11perf.txt
     # install xdummy
     - sudo apt-get update && sudo apt-get install -y xserver-xorg-video-dummy
     - sudo killall Xvfb
@@ -10,6 +10,6 @@ test:
         background: true
     - sleep 2
     # run x11perf again
-    - x11perf -all | tee $CIRCLE_ARTIFACTS/with-xdummy.x11perf.txt
+    - x11perf -range dot,seg500 | tee $CIRCLE_ARTIFACTS/with-xdummy.x11perf.txt
     # compare the output
     - x11perfcomp -r $CIRCLE_ARTIFACTS/with-xvrb.x11perf.txt $CIRCLE_ARTIFACTS/with-xdummy.x11perf.txt | tee $CIRCLE_ARTIFACTS/comparison.txt
