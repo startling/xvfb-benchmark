@@ -12,4 +12,4 @@ test:
     # run x11perf again
     - x11perf -all | tee $CIRCLE_ARTIFACTS/with-xdummy.x11perf.txt
     # compare the output
-    - x11perfcomp $CIRCLE_ARTIFACTS/*.x11perf.txt > $CIRCLE_ARTIFACTS/comparison.txt
+    - x11perfcomp -r $CIRCLE_ARTIFACTS/with-xvrb.x11perf.txt $CIRCLE_ARTIFACTS/with-xdummy.x11perf.txt | tee $CIRCLE_ARTIFACTS/comparison.txt
